@@ -6,13 +6,13 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:46:30 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/19 15:40:17 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/19 17:17:46 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/minishell.h"
 
-static void off_echoctl(void)
+static void echoctl_off(void)
 {
     struct termios attr;
 
@@ -21,6 +21,15 @@ static void off_echoctl(void)
     // ECHOCTL: 제어문자가 반향되도록 하는 플래그. 이 플래그를 off 시켜서 ctrl + c를 눌러도 ^C가 화면에 표시되지 않도록 한다.
     attr.c_lflag &= ~ECHOCTL;
     // 변경된 STDIN_FILENO 터미널 속성 적용
+    tcsetattr(STDIN_FILENO, TCSANOW, &attr);
+}
+
+static void echoctl_on(void)
+{
+    struct termios attr;
+
+    tcgetattr(STDIN_FILENO, &attr);
+    attr.c_lflag |= ECHOCTL;
     tcsetattr(STDIN_FILENO, TCSANOW, &attr);
 }
 
@@ -49,7 +58,8 @@ int main(int argc, char **argv, char **envp)
     print_intro();
     while (1)
     {
-        off_echoctl();
+        echoctl_off();
+        set_main_signal();
         line = readline("minishell $ ");
         if (!line)
             break;
@@ -64,5 +74,6 @@ int main(int argc, char **argv, char **envp)
             free_cmd_list(cmd_list);
             continue;
         }
+        echoctl_on();
     }
 }

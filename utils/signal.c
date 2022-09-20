@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:06:28 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/19 15:38:17 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/19 16:57:03 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 void sigint_handler(int sig)
 {
+    // ctrl + c
     pid_t pid;
 
     // waitpid: 프로세스의 종료 상태를 리턴해 주는 함수: 성공시 프로세스 ID, 오류시 -1, 그 외에는 0 리턴
     pid = waitpid(-1, NULL, WNOHANG);
     if (sig == SIGINT)
     {
+        // 자식 프로세스 없으면
         if (pid == -1)
         {
             ft_putendl_fd("", STDOUT_FILENO);
-            // line buffer flush
+            // line buffer flush(readline 실행 중 들어온 입력을 첫번째 인자로 다시 설정)
             rl_replace_line("", 0);
             // 커서가 개행 문자를 통해 다음 줄로 이동했음을 알려주는 함수(rl_redisplay를 실행하기 위해 필요)
             rl_on_new_line();
-            // readline 함수의 인자로 넣은 문자열을 다시 출력한다.(rl_replace_line를 출력하지 않으면 작동하지 않는다.)
+            // 화면에 출력된 값을 rl_line_buffer 안에 저장된 내용물로 바꾼다.(readline실행 중 다시 readline을 실행할 때)
             rl_redisplay();
             g_env_list.exit_status = 1;
         }
