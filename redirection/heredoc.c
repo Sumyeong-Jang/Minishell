@@ -1,9 +1,9 @@
 #include "../includes/minishell.h"
 
-static int	write_dollar_heredoc(char *line, int start, int len, int fd)
+static int write_dollar_heredoc(char *line, int start, int len, int fd)
 {
-	char	*name;
-	char	*value;
+	char *name;
+	char *value;
 
 	name = ft_substr(line, start, len);
 	if (name == NULL)
@@ -24,7 +24,7 @@ static int	write_dollar_heredoc(char *line, int start, int len, int fd)
 	return (TRUE);
 }
 
-static void	finish_heredoc(char **line, int fd, int end_status)
+static void finish_heredoc(char **line, int fd, int end_status)
 {
 	if (*line != NULL)
 		free(*line);
@@ -33,12 +33,12 @@ static void	finish_heredoc(char **line, int fd, int end_status)
 	exit(end_status);
 }
 
-static int	write_heredoc(int fd, char *line)
+int write_heredoc(int fd, char *line)
 {
-	int		idx;
-	int		temp;
-	char	*name;
-	char	*value;
+	int idx;
+	int temp;
+	char *name;
+	char *value;
 
 	idx = 0;
 	while (line[idx] != '\0')
@@ -46,8 +46,7 @@ static int	write_heredoc(int fd, char *line)
 		if (line[idx] == '$' && line[idx + 1] != '\0' && line[idx + 1] != ' ')
 		{
 			temp = ++idx;
-			while (line[idx] != '\0' && !(line[idx] == ' ' || \
-				line[idx] >= 9 && line[idx] <= 13) && line[idx] != '$')
+			while (line[idx] != '\0' && !(line[idx] == ' ' || line[idx] >= 9 && line[idx] <= 13) && line[idx] != '$')
 				idx++;
 			if (write_dollar_heredoc(line, temp, idx - temp, fd) == FALSE)
 				return (FALSE);
@@ -62,10 +61,10 @@ static int	write_heredoc(int fd, char *line)
 	return (TRUE);
 }
 
-static int	heredoc_child(char *delimiter)
+int heredoc_child(char *delimiter)
 {
-	int		fd;
-	char	*line;
+	int fd;
+	char *line;
 
 	set_heredoc_signal();
 	line = NULL;
@@ -90,11 +89,11 @@ static int	heredoc_child(char *delimiter)
 	finish_heredoc(&line, fd, 0);
 }
 
-int	mini_heredoc(t_cmd_node **curr_cmd)
+int mini_heredoc(t_cmd_node **curr_cmd)
 {
-	pid_t	pid;
-	int		status;
-	int		ret;
+	pid_t pid;
+	int status;
+	int ret;
 
 	signal(SIGQUIT, SIG_IGN);
 	pid = fork();

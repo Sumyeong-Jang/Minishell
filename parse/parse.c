@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:37:44 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 03:42:33 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 04:57:40 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int need_join(t_token_node *curr_token, char *line, int option)
     }
 }
 
-static void join_quote(t_cmd_node **cmd_head,
-                       t_token_node **curr_token, char *line)
+void join_quote(t_cmd_node **cmd_head,
+                t_token_node **curr_token, char *line)
 {
     int start;
     int end;
@@ -72,8 +72,8 @@ static void join_quote(t_cmd_node **cmd_head,
     last_cmd->cmd = ft_strjoin(last_cmd->cmd, new_str);
 }
 
-static int new_quote(t_cmd_node **cmd_head,
-                     t_token_node **curr_token, char *line)
+int new_quote(t_cmd_node **cmd_head,
+              t_token_node **curr_token, char *line)
 {
     int start;
     int end;
@@ -91,8 +91,8 @@ static int new_quote(t_cmd_node **cmd_head,
     return (1);
 }
 
-static void join_dquote(t_cmd_node **cmd_head,
-                        t_token_node **curr, char *line)
+void join_dquote(t_cmd_node **cmd_head,
+                 t_token_node **curr, char *line)
 {
     char *new_str;
     t_cmd_node *last_cmd;
@@ -127,8 +127,8 @@ void make_new_str(char **new_str, t_token_node **curr, char *line)
     }
 }
 
-static int new_dquote(t_cmd_node **cmd_head,
-                      t_token_node **curr, char *line)
+int new_dquote(t_cmd_node **cmd_head,
+               t_token_node **curr, char *line)
 {
     char *new_str;
     t_cmd_node *new_cmd;

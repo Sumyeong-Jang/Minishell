@@ -6,15 +6,15 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 02:24:14 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 03:42:51 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 04:59:33 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void make_new_dollar_string(int
-                                       *idx,
-                                   t_token_node **curr, char **new_str)
+void make_new_dollar_string(int
+                                *idx,
+                            t_token_node **curr, char **new_str)
 {
     char *tmp_str;
     int tmp_idx;
@@ -31,7 +31,7 @@ static void make_new_dollar_string(int
     free(tmp_str);
 }
 
-static void dquote_dollar(char **new_str, char *key)
+void dquote_dollar(char **new_str, char *key)
 {
     int envp_idx;
     char **split;

@@ -3,12 +3,12 @@ NAME = minishell
 CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address
 LIBFT_DIR = ./libft/
 PARSE_DIR = ./parse/
-BUILTIN_DIR = ./built_in/
+BUILTIN_DIR = ./builtins/
 UTIL_DIR = ./util/
 EXEC_DIR = ./exec/
 REDIR_DIR = ./redirection/
 
-PARSE_SRCS = parse_cmd_utils2.c parse_main.c parse_token.c parse_cmd.c parse_cmd_add.c parse_cmd_type.c parse_cmd_add_quote.c parse_cmd_utils.c
+PARSE_SRCS = cmd.c heredoc.c parse.c token.c
 BUILTIN_SRCS = ft_pwd.c ft_env.c ft_echo.c ft_export.c ft_unset.c ft_cd.c ft_cd_util.c ft_exit.c ft_export_util.c ft_cd_single.c ft_unset_single.c
 UTIL_SRCS = ft_strcmp.c copy_env.c tolowerstr.c signal_set.c signal_handler.c free.c parse_utils.c
 EXEC_SRCS = exec_bulitin.c exec_cmd_util.c exec_cmd_with_pipe.c exec_cmd_without_pipe.c exec_cmd_with_pipe_util.c

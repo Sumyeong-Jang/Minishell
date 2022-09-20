@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 04:36:33 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 05:01:54 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 #include <sys/stat.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "../libft/libft.h"
+
+#define FALSE 0
+#define TRUE 1
 
 enum e_token_type
 {
@@ -110,6 +114,16 @@ char *get_lower_str(char *str);
 int add_token(t_token_node **token_head,
               t_token_node **new_node, enum e_token_type type, int idx);
 enum e_token_type get_token_type(char *line, int idx);
+void dquote_dollar(char **new_str, char *key);
+void join_quote(t_cmd_node **cmd_head,
+                t_token_node **curr_token, char *line);
+int new_quote(t_cmd_node **cmd_head,
+              t_token_node **curr_token, char *line);
+void join_dquote(t_cmd_node **cmd_head,
+                 t_token_node **curr, char *line);
+int new_dquote(t_cmd_node **cmd_head,
+               t_token_node **curr, char *line);
+int write_heredoc(int fd, char *line);
 
 /*
  *** utils ***
@@ -139,6 +153,10 @@ t_cmd_node *has_redir_out(t_cmd_node *node);
 t_cmd_node *remove_redir(t_cmd_node *head);
 void remove_temp_file(void);
 void move_heredoc_curser(int fd);
+int heredoc_child(char *delimiter);
+void make_new_dollar_string(int
+                                *idx,
+                            t_token_node **curr, char **new_str);
 
 /*
  *** execute commands ***
@@ -172,6 +190,7 @@ void ft_env(void);
 void ft_exit_single_cmd(t_cmd_node *head);
 void ft_exit(t_cmd_node *head);
 int is_in_env_list(char *str);
+int is_in_envp(char *str);
 void modify_envp(char *str, int loc);
 char **new_export(char *str);
 int is_right_form(char *str);

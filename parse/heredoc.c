@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 03:33:47 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 03:36:41 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 05:00:01 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void finish_heredoc(char **line, int fd, int end_status)
     exit(end_status);
 }
 
-static int heredoc_child(char *delimiter)
+int heredoc_child(char *delimiter)
 {
     int fd;
     char *line;
