@@ -55,7 +55,7 @@ t_env_list g_env_list;
 struct s_env_list
 {
     char **env_list;
-    // int exit_status;
+    int exit_status;
 };
 
 struct s_token_node
