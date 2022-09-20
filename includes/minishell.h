@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/18 18:52:53 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 03:37:36 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <termios.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
