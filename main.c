@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:46:30 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/19 17:17:46 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/20 20:48:36 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void echoctl_off(void)
 
     // STDIN_FILENO 터미널의 속성 받아오기
     tcgetattr(STDIN_FILENO, &attr);
+    // ECHOCTL만 빼고 다 킴
     // ECHOCTL: 제어문자가 반향되도록 하는 플래그. 이 플래그를 off 시켜서 ctrl + c를 눌러도 ^C가 화면에 표시되지 않도록 한다.
     attr.c_lflag &= ~ECHOCTL;
     // 변경된 STDIN_FILENO 터미널 속성 적용
@@ -56,10 +57,10 @@ int main(int argc, char **argv, char **envp)
     if (is_in_env_list("OLDPWD") == -1)
         edit_env_list(ft_strjoin(ft_strdup("OLDPWD="), get_pwd()));
     print_intro();
+    set_main_signal();
     while (1)
     {
         echoctl_off();
-        set_main_signal();
         line = readline("minishell $ ");
         if (!line)
             break;
