@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:37:44 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 03:25:05 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 03:42:33 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,28 @@ static void join_dquote(t_cmd_node **cmd_head,
     while (last_cmd->next != NULL)
         last_cmd = last_cmd->next;
     last_cmd->cmd = ft_strjoin(last_cmd->cmd, new_str);
+}
+
+void make_new_str(char **new_str, t_token_node **curr, char *line)
+{
+    int idx;
+    int len;
+
+    idx = 0;
+    len = ft_strlen((*curr)->token);
+    if (len == 0)
+        return;
+    while (idx < len)
+    {
+        if ((*curr)->token[idx] == '$')
+            make_new_dollar_string(&idx, curr, new_str);
+        else
+        {
+            *new_str = ft_strjoin(*new_str,
+                                  char_to_string((*curr)->token[idx]));
+            idx++;
+        }
+    }
 }
 
 static int new_dquote(t_cmd_node **cmd_head,

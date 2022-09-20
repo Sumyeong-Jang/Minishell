@@ -6,11 +6,24 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:06:28 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/19 16:57:03 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 03:35:25 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void sig_heredoc_handler(int sig)
+{
+    (void)sig;
+    ft_putendl_fd("", STDOUT_FILENO);
+    exit(130);
+}
+
+void set_heredoc_signal(void)
+{
+    signal(SIGINT, sig_heredoc_handler);
+    signal(SIGQUIT, SIG_IGN);
+}
 
 void sigint_handler(int sig)
 {
