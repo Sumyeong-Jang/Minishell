@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 05:16:08 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 05:28:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void sigquit_handler(int sig);
 void sig_heredoc_handler(int sig);
 char *char_to_string(char c);
 int is_white_space(char c);
+void ft_free(char **s);
 
 /*
  *** redirection ***
