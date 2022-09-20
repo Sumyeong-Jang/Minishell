@@ -1,5 +1,8 @@
 #include "../includes/minishell.h"
 
+char *char_to_string(char c);
+int is_white_space(char c);
+
 char *char_to_string(char c)
 {
 	char *ret;
