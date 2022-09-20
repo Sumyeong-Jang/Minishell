@@ -2,7 +2,7 @@
 
 void	exec_with_pipe(t_cmd_list *list);
 static void	pipe_process(int size, int ***fd);
-static void	exec_single_cmd_with_pipe(t_cmd_node *node, int ***fd, int size);
+static void	do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size);
 static void	close_fd(int ***fd, int size);
 static void	close_wait(int ***fd, pid_t **pid, int *status, int size);
 
