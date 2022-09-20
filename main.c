@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:46:30 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 04:34:07 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 05:24:24 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,10 @@ int main(int argc, char **argv, char **envp)
             continue;
         }
         echoctl_on();
+        exec_cmd(cmd_list);
+        free_cmd(cmd_list);
+        remove_temp_file();
     }
+    free_split(g_env_list.env_list);
+    return (0);
 }

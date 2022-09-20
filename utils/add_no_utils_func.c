@@ -1,8 +1,8 @@
 #include "../includes/minishell.h"
 
-char	*char_to_string(char c)
+char *char_to_string(char c)
 {
-	char	*ret;
+	char *ret;
 
 	ret = (char *)malloc(sizeof(char) * 2);
 	if (ret == NULL)
@@ -12,10 +12,9 @@ char	*char_to_string(char c)
 	return (ret);
 }
 
-int	is_white_space(char c)
+int is_white_space(char c)
 {
-	if (c == ' ' || c >= 9 && c <= 13)
+	if (c == ' ' || (c >= 9 && c <= 13))
 		return (TRUE);
 	return (FALSE);
 }
-

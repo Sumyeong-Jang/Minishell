@@ -1,23 +1,23 @@
 #include "../includes/minishell.h"
 
-void	export_str(char *str);
-void	old_dir(void);
-void	change_dir(char *str);
-char	*get_pwd(void);
+void export_str(char *str);
+void old_dir(void);
+void change_dir(char *str);
+char *get_pwd(void);
 
-void	export_str(char *str)
+void export_str(char *str)
 {
 	if (is_in_envp(str) != -1)
 		modify_envp(str, is_in_envp(str));
 	else
-		g_env_list.envp = new_export(str);
+		g_env_list.env_list = new_export(str);
 }
 
-void	old_dir(void)
+void old_dir(void)
 {
-	char	*str1;
-	char	*str2;
-	char	*tmp;
+	char *str1;
+	char *str2;
+	char *tmp;
 
 	str1 = get_value("OLDPWD");
 	str2 = get_value("PWD");
@@ -37,10 +37,10 @@ void	old_dir(void)
 	tmp = 0;
 }
 
-void	change_dir(char *str)
+void change_dir(char *str)
 {
-	char	*tmp;
-	char	*ret;
+	char *tmp;
+	char *ret;
 
 	tmp = get_value("PWD");
 	if (chdir(str) < 0)
@@ -63,9 +63,9 @@ void	change_dir(char *str)
 	}
 }
 
-char	*get_pwd(void)
+char *get_pwd(void)
 {
-	char	*current_dir;
+	char *current_dir;
 
 	current_dir = getcwd(NULL, 0);
 	if (current_dir == NULL)

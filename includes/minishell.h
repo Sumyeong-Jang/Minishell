@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 05:01:54 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 05:16:08 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 
 #define FALSE 0
 #define TRUE 1
+#define INT_MAX 2147483647
+#define INT_MIN -2147483648
 
 enum e_token_type
 {
@@ -204,5 +206,8 @@ void ft_export_single_cmd(t_cmd_node *head);
 void ft_unset_single_cmd(t_cmd_node *head);
 void ft_cd_single_cmd(t_cmd_node *head);
 void export_wihtout_arg(t_cmd_node *head);
+int has_equal_sign(char *str);
+void change_dir(char *str);
+void export_str(char *str);
 
 #endif

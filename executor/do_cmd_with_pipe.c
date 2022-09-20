@@ -1,22 +1,22 @@
 #include "../includes/minishell.h"
 
-void	exec_with_pipe(t_cmd_list *list);
-static void	pipe_process(int size, int ***fd);
-static void	do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size);
-static void	close_fd(int ***fd, int size);
-static void	close_wait(int ***fd, pid_t **pid, int *status, int size);
+void exec_with_pipe(t_cmd_list *list);
+static void pipe_process(int size, int ***fd);
+static void do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size);
+static void close_fd(int ***fd, int size);
+static void close_wait(int ***fd, pid_t **pid, int *status, int size);
 
-void	exec_with_pipe(t_cmd_list *list)
+void exec_with_pipe(t_cmd_list *list)
 {
-	int		idx;
-	int		**fd;
-	pid_t	*pid;
-	int		*status;
+	int idx;
+	int **fd;
+	pid_t *pid;
+	int *status;
 
 	malloc_variables(list->size, &fd, &pid, &status);
 	pipe_process(list->size, &fd);
 	idx = -1;
-	while (idx++ < list->size)//++위치 변경
+	while (idx++ < list->size) //++위치 변경
 	{
 		pid[idx] = fork();
 		if (pid[idx] < 0)
@@ -34,9 +34,9 @@ void	exec_with_pipe(t_cmd_list *list)
 	free_variables(list->size, &fd, &pid, &status);
 }
 
-static void	pipe_process(int size, int ***fd)
+static void pipe_process(int size, int ***fd)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < size - 1)
@@ -46,11 +46,11 @@ static void	pipe_process(int size, int ***fd)
 	}
 }
 
-static void	do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size)
+static void do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size)
 {
-	char		**arg;
-	char		*tmp;
-	t_cmd_node	*cmd_list;
+	char **arg;
+	char *tmp;
+	t_cmd_node *cmd_list;
 
 	redir_in(node);
 	redir_out(node);
@@ -62,14 +62,14 @@ static void	do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size)
 	{
 		tmp = is_valid_cmd(cmd_list);
 		arg = string_array(cmd_list);
-		if (execve(tmp, arg, g_env_list.envp) == -1)
+		if (execve(tmp, arg, g_env_list.env_list) == -1)
 			execve_error(strerror(errno), cmd_list);
 	}
 }
 
-static void	close_fd(int ***fd, int size)
+static void close_fd(int ***fd, int size)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < size)
@@ -80,9 +80,9 @@ static void	close_fd(int ***fd, int size)
 	}
 }
 
-static void	close_wait(int ***fd, pid_t **pid, int *status, int size)
+static void close_wait(int ***fd, pid_t **pid, int *status, int size)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < size - 1)
