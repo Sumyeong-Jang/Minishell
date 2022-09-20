@@ -12,6 +12,9 @@
 
 #include "../includes/minishell.h"
 
+void ft_free(char **s);
+void	free_array(int **tmp, int idx);
+
 void ft_free(char **s)
 {
     int i;
@@ -25,6 +28,21 @@ void ft_free(char **s)
     }
     free(s);
     s = NULL;
+}
+
+void	free_array(int **tmp, int idx)
+{
+	int	i;
+
+	i = 0;
+	while (i < idx)
+	{
+		free(tmp[i]);
+		tmp[i] = NULL;
+		i++;
+	}
+	free(tmp);
+	tmp = NULL;
 }
 
 // static void free_cmd(t_cmd_list *cmd_list)
@@ -53,3 +71,34 @@ void ft_free(char **s)
 //     free(cmd_list);
 //     cmd_list = 0;
 // }
+
+void	free_split(char **tmp)
+{
+	int	i;
+	int	cnt;
+
+	i = -1;
+	cnt = 0;
+	while (tmp[++i])
+		cnt++;
+	i = -1;
+	while (++i < cnt)
+		free(tmp[i]);
+	free(tmp);
+	tmp = NULL;
+}
+
+void	free_split_part(char **tmp, int idx)
+{
+	int	i;
+
+	i = 0;
+	while (i < idx)
+	{
+		free(tmp[i]);
+		tmp[i] = NULL;
+		i++;
+	}
+	free(tmp);
+	tmp = NULL;
+}

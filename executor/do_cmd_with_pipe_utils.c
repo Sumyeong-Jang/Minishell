@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-void	malloc_variables(int size, int ***fd, pid_t **pid, int **status)
+void	malloc_variables(int size, int ***fd, pid_t **pid, int **status);
 int	malloc_pid(int size, pid_t **pid);
 int	malloc_fd(int size, int ***fd);
 int	malloc_status(int size, int **status);
