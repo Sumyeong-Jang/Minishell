@@ -6,11 +6,28 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 02:24:14 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 04:59:33 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 05:55:20 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int add_cmd(t_cmd_node **cmd_head, t_cmd_node *new_node)
+{
+    t_cmd_node *last_node;
+
+    if (*cmd_head == 0)
+        *cmd_head = new_node;
+    else
+    {
+        last_node = *cmd_head;
+        while (last_node->next != NULL)
+            last_node = last_node->next;
+        last_node->next = new_node;
+        new_node->prev = last_node;
+    }
+    return (TRUE);
+}
 
 void make_new_dollar_string(int
                                 *idx,
@@ -307,7 +324,7 @@ static int is_builtin(t_cmd_node **curr)
     return (ret);
 }
 
-int check_cmd(t_cmd_node **cmd_heads, int size)
+int check_cmd(t_cmd_node **cmd_head, int size)
 {
     int idx;
     int flag;
@@ -318,7 +335,7 @@ int check_cmd(t_cmd_node **cmd_heads, int size)
     while (idx < size)
     {
         flag = 0;
-        curr = cmd_heads[idx];
+        curr = cmd_head[idx];
         while (curr != NULL)
         {
             if (check_redir(&curr) == 0)

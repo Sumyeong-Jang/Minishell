@@ -1,19 +1,20 @@
 #include "../includes/minishell.h"
 
-t_cmd_node	*remove_redir(t_cmd_node *head);
+t_cmd_node *remove_redir(t_cmd_node *head);
+static t_cmd_node *cmd_dup(t_cmd_node *src_node);
+static void free_single_cmd_list(t_cmd_node *head);
 
-t_cmd_node	*remove_redir(t_cmd_node *head)
+t_cmd_node *remove_redir(t_cmd_node *head)
 {
-	t_cmd_node	*new_list_head;
-	t_cmd_node	*new_node;
-	t_cmd_node	*curr;
+	t_cmd_node *new_list_head;
+	t_cmd_node *new_node;
+	t_cmd_node *curr;
 
 	new_list_head = NULL;
 	curr = head;
 	while (curr != NULL)
 	{
-		if (curr->type == COMMON || curr->type == BUILTIN \
-			|| curr->type == OPTION)
+		if (curr->type == COMMON || curr->type == BUILTIN || curr->type == OPTION)
 		{
 			new_node = cmd_dup(curr);
 			if (new_node == NULL || add_cmd(&new_list_head, new_node) == FALSE)
@@ -27,10 +28,10 @@ t_cmd_node	*remove_redir(t_cmd_node *head)
 	return (new_list_head);
 }
 
-static char	*without_redir(t_cmd_node *node)
+static char *without_redir(t_cmd_node *node)
 {
-	t_cmd_node	*curr;
-	char		*ret;
+	t_cmd_node *curr;
+	char *ret;
 
 	ret = NULL;
 	curr = node;
@@ -46,10 +47,10 @@ static char	*without_redir(t_cmd_node *node)
 	return (ret);
 }
 
-static void	free_single_cmd_list(t_cmd_node *head)
+static void free_single_cmd_list(t_cmd_node *head)
 {
-	t_cmd_node	*curr;
-	t_cmd_node	*temp;
+	t_cmd_node *curr;
+	t_cmd_node *temp;
 
 	curr = head;
 	while (curr != NULL)
@@ -62,13 +63,13 @@ static void	free_single_cmd_list(t_cmd_node *head)
 	}
 }
 
-static t_cmd_node	*cmd_dup(t_cmd_node *src_node)
+static t_cmd_node *cmd_dup(t_cmd_node *src_node)
 {
-	t_cmd_node	*new_node;
+	t_cmd_node *new_node;
 
 	new_node = (t_cmd_node *)malloc(sizeof(t_cmd_node));
 	if (new_node == NULL)
-		exit (1);
+		exit(1);
 	ft_memset(new_node, 0, sizeof(t_cmd_node));
 	new_node->cmd = ft_strdup(src_node->cmd);
 	if (new_node->cmd == NULL)

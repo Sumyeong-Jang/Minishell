@@ -37,12 +37,6 @@ int is_in_envp(char *str)
 	return (-1);
 }
 
-void modify_envp(char *str, int loc)
-{
-	free(g_env_list.env_list[loc]);
-	g_env_list.env_list[loc] = ft_strdup(str);
-}
-
 char **new_export(char *str)
 {
 	int i;

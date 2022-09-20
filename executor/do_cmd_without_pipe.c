@@ -7,7 +7,7 @@ static void do_cmd_without_pipe(t_cmd_node *node);
 void exec_cmd(t_cmd_list *cmd_list)
 {
 	if (cmd_list->size == 1)
-		exec_without_pipe(cmd_list->cmd_heads[0]);
+		exec_without_pipe(cmd_list->cmd_head[0]);
 	else
 		exec_with_pipe(cmd_list);
 }

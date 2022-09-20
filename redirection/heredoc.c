@@ -61,58 +61,10 @@ int write_heredoc(int fd, char *line)
 	return (TRUE);
 }
 
-int heredoc_child(char *delimiter)
+void move_heredoc_curser(int fd)
 {
-	int fd;
-	char *line;
-
-	set_heredoc_signal();
-	line = NULL;
-	fd = open("ejang.jeyoon", O_RDWR | O_CREAT | O_TRUNC, 0666);
-	if (fd < 0)
-	{
-		parse_error(5);
-		finish_heredoc(&line, fd, 1);
-	}
-	while (1)
-	{
-		line = readline("> ");
-		if (line == NULL)
-			move_heredoc_curser(fd);
-		if (ft_strcmp(line, delimiter) == 0)
-			finish_heredoc(&line, fd, 0);
-		if (write_heredoc(fd, line) == FALSE)
-			finish_heredoc(&line, fd, 1);
-		free(line);
-	}
-	line = NULL;
-	finish_heredoc(&line, fd, 0);
-}
-
-int mini_heredoc(t_cmd_node **curr_cmd)
-{
-	pid_t pid;
-	int status;
-	int ret;
-
-	signal(SIGQUIT, SIG_IGN);
-	pid = fork();
-	if (pid == 0)
-		heredoc_child((*curr_cmd)->cmd);
-	else
-	{
-		waitpid(pid, &status, 0);
-		ret = status / 256;
-		set_main_signal();
-		if (ret == 130 || ret == 1)
-		{
-			g_env_list.exit_status = 1;
-			remove_temp_file();
-			return (FALSE);
-		}
-		(*curr_cmd)->prev->type = REDIRIN;
-		free((*curr_cmd)->cmd);
-		(*curr_cmd)->cmd = ft_strdup("ejang.jeyoon");
-	}
-	return (TRUE);
+	close(fd);
+	ft_putstr_fd("\x1b[1A", 1);
+	ft_putstr_fd("\033[2C", 1);
+	exit(0);
 }

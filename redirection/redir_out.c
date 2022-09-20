@@ -1,16 +1,16 @@
 #include "../includes/minishell.h"
 
-void	redir_out(t_cmd_node *node);
-t_cmd_node	*has_redir_out(t_cmd_node *node);
-static void	do_redir_out(char *cmd);
-static void	do_redir_append(char *cmd);
+void redir_out(t_cmd_node *node);
+t_cmd_node *have_redir_out(t_cmd_node *node);
+static void do_redir_out(char *cmd);
+static void do_redir_append(char *cmd);
 
-void	redir_out(t_cmd_node *node)
+void redir_out(t_cmd_node *node)
 {
-	t_cmd_node	*outfile;
-	int			out_fd;
+	t_cmd_node *outfile;
+	int out_fd;
 
-	outfile = has_redir_out(node);
+	outfile = have_redir_out(node);
 	if (outfile != NULL)
 	{
 		if (outfile->type == REDIROUT)
@@ -27,10 +27,10 @@ void	redir_out(t_cmd_node *node)
 	}
 }
 
-t_cmd_node	*have_redir_out(t_cmd_node *node)
+t_cmd_node *have_redir_out(t_cmd_node *node)
 {
-	t_cmd_node	*curr;
-	t_cmd_node	*last_redirout;
+	t_cmd_node *curr;
+	t_cmd_node *last_redirout;
 
 	curr = node;
 	last_redirout = NULL;
@@ -51,10 +51,10 @@ t_cmd_node	*have_redir_out(t_cmd_node *node)
 	return (last_redirout);
 }
 
-static void	do_redir_out(char *cmd)
+static void do_redir_out(char *cmd)
 {
-	int			fd;
-	struct stat	s;
+	int fd;
+	struct stat s;
 
 	if (stat(cmd, &s) == 0)
 	{
@@ -72,10 +72,10 @@ static void	do_redir_out(char *cmd)
 	}
 }
 
-static void	do_redir_append(char *cmd)
+static void do_redir_append(char *cmd)
 {
-	int			fd;
-	struct stat	s;
+	int fd;
+	struct stat s;
 
 	if (stat(cmd, &s) != 0)
 	{

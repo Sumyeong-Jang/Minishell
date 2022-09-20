@@ -27,7 +27,7 @@ void exec_with_pipe(t_cmd_list *list)
 				dup2(fd[idx - 1][0], STDIN_FILENO);
 			if (idx < list->size - 1)
 				dup2(fd[idx][1], STDOUT_FILENO);
-			do_cmd_with_pipe(list->cmd_heads[idx], &fd, list->size);
+			do_cmd_with_pipe(list->cmd_head[idx], &fd, list->size);
 		}
 	}
 	close_wait(&fd, &pid, status, list->size);
@@ -57,7 +57,7 @@ static void do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size)
 	cmd_list = remove_redir(node);
 	close_fd(fd, size - 1);
 	if (cmd_list->type == BUILTIN)
-		exec_builtin(cmd_list);
+		exec_builtins(cmd_list);
 	else
 	{
 		tmp = is_valid_cmd(cmd_list);

@@ -6,13 +6,14 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 05:28:15 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 06:00:39 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -107,7 +108,7 @@ int need_join(t_token_node *curr_token, char *line, int option);
 char *replace_dollar(char *str, int idx, char *line);
 void make_new_str(char **new_str,
                   t_token_node **curr, char *line);
-int check_cmd(t_cmd_node **cmd_heads, int size);
+int check_cmd(t_cmd_node **cmd_head, int size);
 int add_quote_cmd(t_cmd_node **cmd_head,
                   t_token_node **curr_token, enum e_token_type type, char *line);
 int add_cmd(t_cmd_node **cmd_head, t_cmd_node *new_node);
@@ -150,9 +151,9 @@ void ft_free(char **s);
  */
 int mini_heredoc(t_cmd_node **curr_cmd);
 void redir_in(t_cmd_node *node);
-char *has_redir_in(t_cmd_node *node);
+char *have_redir_in(t_cmd_node *node);
 void redir_out(t_cmd_node *node);
-t_cmd_node *has_redir_out(t_cmd_node *node);
+t_cmd_node *have_redir_out(t_cmd_node *node);
 t_cmd_node *remove_redir(t_cmd_node *head);
 void remove_temp_file(void);
 void move_heredoc_curser(int fd);
@@ -164,8 +165,8 @@ void make_new_dollar_string(int
 /*
  *** execute commands ***
  */
-void exec_builtin(t_cmd_node *node);
-void exec_builtin_single(t_cmd_node *node);
+void exec_builtins(t_cmd_node *node);
+void exec_single_builtins(t_cmd_node *node);
 char *is_valid_cmd(t_cmd_node *node);
 char **string_array(t_cmd_node *node);
 int malloc_fd(int size, int ***fd);
@@ -194,7 +195,7 @@ void ft_exit_single_cmd(t_cmd_node *head);
 void ft_exit(t_cmd_node *head);
 int is_in_env_list(char *str);
 int is_in_envp(char *str);
-void modify_envp(char *str, int loc);
+void modify_envp(char *str, int i);
 char **new_export(char *str);
 int is_right_form(char *str);
 void ft_export(t_cmd_node *head);

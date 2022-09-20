@@ -62,16 +62,3 @@ void change_dir(char *str)
 		ret = 0;
 	}
 }
-
-char *get_pwd(void)
-{
-	char *current_dir;
-
-	current_dir = getcwd(NULL, 0);
-	if (current_dir == NULL)
-	{
-		ft_putendl_fd(strerror(errno), STDERR_FILENO);
-		exit(1);
-	}
-	return (current_dir);
-}
