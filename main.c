@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:46:30 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/20 20:48:36 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/21 04:34:07 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int main(int argc, char **argv, char **envp)
         ft_memset(cmd_list, 0, sizeof(t_cmd_list));
         if (parse_cmd(line, &cmd_list) == 0)
         {
-            free_cmd_list(cmd_list);
+            free_cmd(cmd_list);
             continue;
         }
         echoctl_on();
