@@ -240,13 +240,17 @@ int mini_heredoc(t_cmd_node **curr_cmd)
     else
     {
         waitpid(pid, &status, 0);
-        ret = status / 256;
         set_main_signal();
-        if (ret == 130 || ret == 1)
+        if (WIFSIGNALED(satus))
         {
-            g_env_list.exit_status = 1;
-            remove_temp_file();
-            return (0);
+            ret = WTERMSIG(status);
+            if (ret == SIGINT)
+            {
+                g_env_list.exit_status = 1;
+                remove_temp_file();
+                return (0);
+            }
+                
         }
         (*curr_cmd)->prev->type = REDIRIN;
         free((*curr_cmd)->cmd);
