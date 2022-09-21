@@ -233,7 +233,9 @@ int mini_heredoc(t_cmd_node **curr_cmd)
 
     signal(SIGQUIT, SIG_IGN);
     pid = fork();
-    if (pid == 0)
+    if (pid <= -1)
+		exit(1);
+    else if (pid == 0)
         heredoc_child((*curr_cmd)->cmd);
     else
     {
