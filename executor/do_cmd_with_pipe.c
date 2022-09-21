@@ -16,7 +16,7 @@ void exec_with_pipe(t_cmd_list *list)
 	malloc_variables(list->size, &fd, &pid, &status);
 	pipe_process(list->size, &fd);
 	idx = -1;
-	while (idx++ < list->size) //++위치 변경
+	while (++idx < list->size) //++위치 변경
 	{
 		pid[idx] = fork();
 		if (pid[idx] < 0)
