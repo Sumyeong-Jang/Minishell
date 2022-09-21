@@ -241,7 +241,7 @@ int mini_heredoc(t_cmd_node **curr_cmd)
     {
         waitpid(pid, &status, 0);
         set_main_signal();
-        if (WIFSIGNALED(satus))
+        if (WIFSIGNALED(status))
         {
             ret = WTERMSIG(status);
             if (ret == SIGINT)
