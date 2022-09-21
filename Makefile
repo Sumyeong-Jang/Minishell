@@ -22,7 +22,6 @@ all	:	$(NAME)
 $(NAME)	:	$(OBJS)
 			@make -C $(LIBFT_DIR) all
 			@$(CC) $(CFLAGS) -L$(LIBFT_DIR) -lft -lreadline -L/usr/local/opt/readline/lib -o $@ $(OBJS)
-			@printf "✅ \033[0;32m$(NAME) was created.\033[0m\n"
 
 %.o	:	%.c
 		@$(CC) $(CFLAG) -I/usr/local/opt/readline/include -c $< -o $@
@@ -30,13 +29,11 @@ $(NAME)	:	$(OBJS)
 clean	:
 			@rm -rf $(OBJS)
 			@make -C $(LIBFT_DIR) clean
-			@printf "🚮 $(NAME)'s object files were removed.\n"
 
 
 fclean	:	clean
 			@rm -rf $(NAME)
 			@make -C $(LIBFT_DIR) fclean
-			@printf "🚮 $(NAME) was removed.\n"
 
 re	:	fclean all
 
