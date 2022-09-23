@@ -6,13 +6,13 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 17:17:19 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 17:21:53 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 18:02:25 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	is_empty_line(char *line)
+int	is_empty_line(char *line)
 {
 	int	i;
 
@@ -82,7 +82,7 @@ int	parse_error(int option)
 	return (0);
 }
 
-static void	free_token_line(t_token_node *head, char *line)
+void	free_token_line(t_token_node *head, char *line)
 {
 	t_token_node	*curr;
 	t_token_node	*temp;

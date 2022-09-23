@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 17:52:24 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 18:05:55 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,13 @@ void				join_dquote(t_cmd_node **cmd_head,
 int					new_dquote(t_cmd_node **cmd_head,
 						t_token_node **curr, char *line);
 int					write_heredoc(int fd, char *line);
-void				cmd_check(t_cmd_list *cmd_line_list, t_token_node *token_head);
+void				cmd_check(t_cmd_list *cmd_line_list,
+						t_token_node *token_head);
+int					cut_cmd_line(t_cmd_node **curr_cmd_head,
+						t_token_node **curr_token, char *line);
+int					is_empty_line(char *line);
+void				free_token_line(t_token_node *head, char *line);
+void				join_cmd(t_cmd_node **cmd_head, char *token);
 
 /**** utils ****/
 char				**copy_envs(char **envp);
