@@ -86,7 +86,7 @@ void	do_redir_out(char *cmd)
 
 void	do_redir_append(char *cmd)
 {
-	int		fd;
+	int			fd;
 	struct stat	s;
 
 	if (stat(cmd, &s) != 0)

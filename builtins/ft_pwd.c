@@ -17,9 +17,8 @@ void	ft_pwd(void)
 	char	*current_dir;
 
 	current_dir = getcwd(NULL, 0);
-
 	if (current_dir == NULL)
-		printf("getcwd() cannot excute in fun_pwd\n");//? 출력?
+		printf("getcwd() cannot excute in fun_pwd\n");
 	else
 	{
 		printf("%s\n", current_dir);

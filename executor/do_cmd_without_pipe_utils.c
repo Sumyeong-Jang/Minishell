@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   do_cmd_without_pipe_utils.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:36:40 by sumjang           #+#    #+#             */
+/*   Updated: 2022/09/23 14:36:41 by sumjang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 char	*is_valid_cmd(t_cmd_node *node);
-static char	*is_valid_cmd_path(t_cmd_node *node);
-static void	path_error(char *str, t_cmd_node *node);
+char	*is_valid_cmd_path(t_cmd_node *node);
+void	path_error(char *str, t_cmd_node *node);
 char	**string_array(t_cmd_node *node);
 void	execve_error(char *strerror, t_cmd_node *cmd_list);
 
@@ -23,7 +35,7 @@ char	*is_valid_cmd(t_cmd_node *node)
 	return (str);
 }
 
-static char	*is_valid_cmd_path(t_cmd_node *node)
+char	*is_valid_cmd_path(t_cmd_node *node)
 {
 	char		**tmp;
 	int			i;
@@ -51,7 +63,7 @@ static char	*is_valid_cmd_path(t_cmd_node *node)
 	return (NULL);
 }
 
-static void	path_error(char *str, t_cmd_node *node)
+void	path_error(char *str, t_cmd_node *node)
 {
 	if (str == NULL)
 	{

@@ -12,14 +12,14 @@
 
 #include "../includes/minishell.h"
 
-int has_equal_sign(char *str);
-int is_in_envp(char *str);
-void modify_envp(char *str, int loc);
-char **new_export(char *str);
+int		has_equal_sign(char *str);
+int		is_in_envp(char *str);
+void	modify_envp(char *str, int loc);
+char	**new_export(char *str);
 
-int has_equal_sign(char *str)
+int	has_equal_sign(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])
@@ -30,16 +30,17 @@ int has_equal_sign(char *str)
 	return (FALSE);
 }
 
-int is_in_envp(char *str)
+int	is_in_envp(char *str)
 {
-	char **split;
-	int i;
+	char	**split;
+	int		i;
 
 	i = -1;
 	split = ft_split(str, '=');
 	while (g_env_list.env_list[++i])
 	{
-		if (ft_strncmp(g_env_list.env_list[i], split[0], ft_strlen(split[0])) == 0)
+		if (ft_strncmp(g_env_list.env_list[i], split[0], \
+		ft_strlen(split[0])) == 0)
 		{
 			free_split(split);
 			return (i);
@@ -49,11 +50,11 @@ int is_in_envp(char *str)
 	return (-1);
 }
 
-char **new_export(char *str)
+char	**new_export(char *str)
 {
-	int i;
-	int cnt;
-	char **ret;
+	int		i;
+	int		cnt;
+	char	**ret;
 
 	i = -1;
 	cnt = 0;

@@ -43,8 +43,8 @@ char	*have_redir_in(t_cmd_node *node)
 {
 	t_cmd_node	*last_redirin;
 	int			flag;
-	struct stat	file_info; //......?
 	int			cnt;
+	struct stat	file_info;
 
 	flag = FALSE;
 	cnt = get_redir_in(node);

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   do_cmd_with_pipe_utils.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:36:09 by sumjang           #+#    #+#             */
+/*   Updated: 2022/09/23 14:36:10 by sumjang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 void	malloc_variables(int size, int ***fd, pid_t **pid, int **status);
-int	malloc_pid(int size, pid_t **pid);
-int	malloc_fd(int size, int ***fd);
-int	malloc_status(int size, int **status);
+int		malloc_pid(int size, pid_t **pid);
+int		malloc_fd(int size, int ***fd);
+int		malloc_status(int size, int **status);
 void	free_variables(int size, int ***fd, pid_t **pid, int **status);
 
 void	malloc_variables(int size, int ***fd, pid_t **pid, int **status)

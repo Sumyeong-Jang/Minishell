@@ -13,8 +13,8 @@
 #include "../includes/minishell.h"
 
 void	ft_unset(t_cmd_node *head);
-static int	ft_unset_2(t_cmd_node *head, int flag);
-static int	unset_error(char *cmd);
+int		ft_unset_2(t_cmd_node *head, int flag);
+int		unset_error(char *cmd);
 
 void	ft_unset(t_cmd_node *head)
 {
@@ -25,7 +25,7 @@ void	ft_unset(t_cmd_node *head)
 		exit(1);
 }
 
-static int	ft_unset_2(t_cmd_node *head, int flag)
+int	ft_unset_2(t_cmd_node *head, int flag)
 {
 	t_cmd_node	*curr_node;
 	int			loc;
@@ -40,7 +40,7 @@ static int	ft_unset_2(t_cmd_node *head, int flag)
 	return (flag);
 }
 
-static int	unset_error(char *cmd)
+int	unset_error(char *cmd)
 {
 	ft_putstr_fd("bash : unset : ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
