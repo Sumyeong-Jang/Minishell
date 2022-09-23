@@ -48,7 +48,7 @@ void	exec_with_pipe(t_cmd_list *list)
 
 void	pipe_process(int size, int ***fd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size - 1)
@@ -60,9 +60,9 @@ void	pipe_process(int size, int ***fd)
 
 void	do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size)
 {
-	char **arg;
-	char *tmp;
-	t_cmd_node *cmd_list;
+	char		**arg;
+	char		*tmp;
+	t_cmd_node	*cmd_list;
 
 	redir_in(node);
 	redir_out(node);
@@ -81,7 +81,7 @@ void	do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size)
 
 void	close_fd(int ***fd, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -94,7 +94,7 @@ void	close_fd(int ***fd, int size)
 
 void	close_wait(int ***fd, pid_t **pid, int *status, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size - 1)
