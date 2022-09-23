@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:45:12 by sjo               #+#    #+#             */
+/*   Updated: 2022/09/23 14:46:13 by sjo              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-static int write_dollar_heredoc(char *line, int start, int len, int fd)
+static int	write_dollar_heredoc(char *line, int start, int len, int fd)
 {
-	char *name;
-	char *value;
+	char	*name;
+	char	*value;
 
 	name = ft_substr(line, start, len);
 	if (name == NULL)
@@ -24,7 +36,7 @@ static int write_dollar_heredoc(char *line, int start, int len, int fd)
 	return (TRUE);
 }
 
-static void finish_heredoc(char **line, int fd, int end_status)
+void	finish_heredoc(char **line, int fd, int end_status)
 {
 	if (*line != NULL)
 		free(*line);
@@ -33,12 +45,12 @@ static void finish_heredoc(char **line, int fd, int end_status)
 	exit(end_status);
 }
 
-int write_heredoc(int fd, char *line)
+int	write_heredoc(int fd, char *line)
 {
-	int idx;
-	int temp;
-	char *name;
-	char *value;
+	int		idx;
+	int		temp;
+	char	*name;
+	char	*value;
 
 	idx = 0;
 	while (line[idx] != '\0')
@@ -46,7 +58,8 @@ int write_heredoc(int fd, char *line)
 		if (line[idx] == '$' && line[idx + 1] != '\0' && line[idx + 1] != ' ')
 		{
 			temp = ++idx;
-			while (line[idx] != '\0' && !(line[idx] == ' ' || line[idx] >= 9 && line[idx] <= 13) && line[idx] != '$')
+			while (line[idx] != '\0' && !(line[idx] == ' ' || line[idx] >= 9
+					&& line[idx] <= 13) && line[idx] != '$')
 				idx++;
 			if (write_dollar_heredoc(line, temp, idx - temp, fd) == FALSE)
 				return (FALSE);
@@ -61,7 +74,7 @@ int write_heredoc(int fd, char *line)
 	return (TRUE);
 }
 
-void move_heredoc_curser(int fd)
+void	move_heredoc_curser(int fd)
 {
 	close(fd);
 	ft_putstr_fd("\x1b[1A", 1);
