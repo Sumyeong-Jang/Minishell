@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset2_single.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:16:06 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:16:07 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	ft_unset_single_cmd(t_cmd_node *head)
 			loc = is_str_in_envp(curr_node->cmd);
 			if (loc != FALSE)
 			{
-				while (loc++ < envp_cnt() - 1)
+				while (loc < envp_cnt() - 1)
 				{
-					free(g_env_list.env_list[loc]);
-					g_env_list.env_list[loc] = \
-					ft_strdup(g_env_list.env_list[loc + 1]);
+					free(g_st.env_list[loc]);
+					g_st.env_list[loc] = ft_strdup(g_st.env_list[loc + 1]);
+					loc++;
 				}
-				free(g_env_list.env_list[envp_cnt() - 1]);
-				g_env_list.env_list[envp_cnt() - 1] = NULL;
+				free(g_st.env_list[envp_cnt() - 1]);
+				g_st.env_list[envp_cnt() - 1] = NULL;
 			}
 		}
 		else if (is_valid_form(curr_node->cmd) == FALSE)
@@ -66,9 +66,9 @@ int	is_str_in_envp(char *str)
 	int	i;
 
 	i = -1;
-	while (g_env_list.env_list[++i])
+	while (g_st.env_list[++i])
 	{
-		if (ft_strncmp(str, g_env_list.env_list[i], ft_strlen(str)) == 0)
+		if (ft_strncmp(str, g_st.env_list[i], ft_strlen(str)) == 0)
 			return (i);
 	}
 	return (FALSE);
@@ -81,7 +81,7 @@ int	envp_cnt(void)
 
 	i = -1;
 	ret = 0;
-	while (g_env_list.env_list[++i])
+	while (g_st.env_list[++i])
 		ret++;
 	return (ret);
 }
@@ -91,5 +91,5 @@ void	unset_error_single(char *cmd)
 	ft_putstr_fd("bash : unset : ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
-	g_env_list.exit_status = 1;
+	g_st.exit_status = 1;
 }

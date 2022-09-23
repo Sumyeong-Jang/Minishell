@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cmd_without_pipe.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:36:31 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:36:31 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	exec_without_pipe(t_cmd_node *node)
 		{
 			waitpid(pid, &status, 0);
 			if (!WIFSIGNALED(status))
-				g_env_list.exit_status = status / 256;
+				g_st.exit_status = status / 256;
 		}
 	}
 }
@@ -64,6 +64,6 @@ void	do_cmd_without_pipe(t_cmd_node *node)
 		exec_builtins(cmd_list);
 	tmp = is_valid_cmd(cmd_list);
 	arg = string_array(cmd_list);
-	if (execve(tmp, arg, g_env_list.env_list) == -1)
+	if (execve(tmp, arg, g_st.env_list) == -1)
 		execve_error(strerror(errno), cmd_list);
 }

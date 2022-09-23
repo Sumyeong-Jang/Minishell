@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cmd_with_pipe_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:36:09 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:36:10 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	malloc_variables(int size, int ***fd, pid_t **pid, int **status)
 	if (malloc_fd(size - 1, fd) != TRUE || malloc_pid \
 	(size, pid) != TRUE || malloc_status(size, status) != TRUE)
 	{
-		g_env_list.exit_status = 1;
+		g_st.exit_status = 1;
 		exit(1);
 	}
 }

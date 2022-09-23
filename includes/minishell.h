@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 18:05:55 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_env_list	t_env_list;
 typedef struct s_token_node	t_token_node;
 typedef struct s_cmd_node	t_cmd_node;
 typedef struct s_cmd_list	t_cmd_list;
-t_env_list					g_env_list;
+t_env_list					g_st;
 
 struct s_env_list
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:15:50 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:15:51 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	is_in_envp(char *str)
 
 	i = -1;
 	split = ft_split(str, '=');
-	while (g_env_list.env_list[++i])
+	while (g_st.env_list[++i])
 	{
-		if (ft_strncmp(g_env_list.env_list[i], split[0], \
+		if (ft_strncmp(g_st.env_list[i], split[0], \
 		ft_strlen(split[0])) == 0)
 		{
 			free_split(split);
@@ -58,17 +58,17 @@ char	**new_export(char *str)
 
 	i = -1;
 	cnt = 0;
-	while (g_env_list.env_list[++i])
+	while (g_st.env_list[++i])
 		cnt++;
 	ret = (char **)malloc(sizeof(char *) * (cnt + 2));
 	if (!ret)
 		exit(1);
 	ret[cnt + 1] = NULL;
 	i = -1;
-	while (g_env_list.env_list[++i])
-		ret[i] = ft_strdup(g_env_list.env_list[i]);
+	while (g_st.env_list[++i])
+		ret[i] = ft_strdup(g_st.env_list[i]);
 	ret[cnt] = ft_strdup(str);
 	ret[cnt + 1] = NULL;
-	free_split(g_env_list.env_list);
+	free_split(g_st.env_list);
 	return (ret);
 }

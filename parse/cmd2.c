@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 17:19:28 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 17:19:51 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void	dquote_dollar(char **new_str, char *key)
 
 	if (ft_strcmp(key, "?") == 0)
 	{
-		*new_str = ft_strjoin(*new_str, ft_itoa(g_env_list.exit_status));
+		*new_str = ft_strjoin(*new_str, ft_itoa(g_st.exit_status));
 		return ;
 	}
 	envp_idx = is_in_envp(key);
 	if (envp_idx == -1)
 		return ;
-	split = ft_split(g_env_list.env_list[envp_idx], '=');
+	split = ft_split(g_st.env_list[envp_idx], '=');
 	if (split == 0)
 		exit(1);
 	ret = ft_strdup(split[1]);

@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:37:27 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 04:26:39 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	is_in_env_list(char *str)
 
 	i = 0;
 	split = ft_split(str, '=');
-	while (g_env_list.env_list[i])
+	while (g_st.env_list[i])
 	{
-		if (ft_strncmp(g_env_list.env_list[i], split[0], \
+		if (ft_strncmp(g_st.env_list[i], split[0], \
 		ft_strlen(split[0])) == 0)
 		{
 			ft_free(split);
@@ -58,8 +58,8 @@ int	is_in_env_list(char *str)
 
 void	modify_envp(char *str, int i)
 {
-	free(g_env_list.env_list[i]);
-	g_env_list.env_list[i] = ft_strdup(str);
+	free(g_st.env_list[i]);
+	g_st.env_list[i] = ft_strdup(str);
 }
 
 char	**add_env(char *str)
@@ -68,21 +68,21 @@ char	**add_env(char *str)
 	char	**ret;
 
 	i = 0;
-	while (g_env_list.env_list[i])
+	while (g_st.env_list[i])
 		i++;
 	ret = (char **)malloc(sizeof(char *) * (i + 2));
 	if (!ret)
 		exit(1);
 	ret[i + 1] = NULL;
 	i = 0;
-	while (g_env_list.env_list[i])
+	while (g_st.env_list[i])
 	{
-		ret[i] = ft_strdup(g_env_list.env_list[i]);
+		ret[i] = ft_strdup(g_st.env_list[i]);
 		i++;
 	}
 	ret[i] = ft_strdup(str);
 	ret[i + 1] = NULL;
-	ft_free(g_env_list.env_list);
+	ft_free(g_st.env_list);
 	return (ret);
 }
 
@@ -91,5 +91,5 @@ void	edit_env_list(char *str)
 	if (is_in_env_list(str) != -1)
 		modify_envp(str, is_in_envp(str));
 	else
-		g_env_list.env_list = add_env(str);
+		g_st.env_list = add_env(str);
 }

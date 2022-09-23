@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:15:30 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:15:31 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_echo(t_cmd_node *head)
 	if (curr_node == NULL)
 	{
 		printf("\n");
-		g_env_list.exit_status = 0;
+		g_st.exit_status = 0;
 		return ;
 	}
 	if (curr_node->type == OPTION)
@@ -34,7 +34,7 @@ void	ft_echo(t_cmd_node *head)
 	}
 	else
 		is_option = FALSE;
-	g_env_list.exit_status = 0;
+	g_st.exit_status = 0;
 	if (curr_node == NULL)
 		return ;
 	print_echo(curr_node, is_option);

@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 17:20:21 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 17:21:01 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ char	*replace_dollar(char *str, int idx, char *line)
 	if (ft_strcmp(str, "\"") == 0)
 		return (ft_strdup("$"));
 	if (ft_strcmp(str, "?") == 0)
-		return (ft_itoa(g_env_list.exit_status));
+		return (ft_itoa(g_st.exit_status));
 	envp_idx = is_in_envp(str);
 	if (envp_idx == -1)
 		return (ft_strdup(""));
-	split = ft_split(g_env_list.env_list[envp_idx], '=');
+	split = ft_split(g_st.env_list[envp_idx], '=');
 	if (split == 0)
 		return (0);
 	ret = ft_strdup(split[1]);

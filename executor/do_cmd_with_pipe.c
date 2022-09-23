@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_cmd_with_pipe.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:36:03 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:36:19 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	do_cmd_with_pipe(t_cmd_node *node, int ***fd, int size)
 	{
 		tmp = is_valid_cmd(cmd_list);
 		arg = string_array(cmd_list);
-		if (execve(tmp, arg, g_env_list.env_list) == -1)
+		if (execve(tmp, arg, g_st.env_list) == -1)
 			execve_error(strerror(errno), cmd_list);
 	}
 }
@@ -108,7 +108,7 @@ void	close_wait(int ***fd, pid_t **pid, int *status, int size)
 	{
 		waitpid((*pid)[i], &status[i], 0);
 		if (!WIFSIGNALED(status[i]))
-			g_env_list.exit_status = status[i] / 256;
+			g_st.exit_status = status[i] / 256;
 		i++;
 	}
 }

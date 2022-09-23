@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:15:41 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:15:42 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	ft_exit(t_cmd_node *head)
 	if (cnt > 1)
 		first_argv = ft_atoll(head->next->cmd);
 	if (cnt == 2 && first_argv >= INT_MIN && first_argv <= INT_MAX)
-		g_env_list.exit_status = get_exit_code(head);
+		g_st.exit_status = get_exit_code(head);
 	else if (cnt > 2 && first_argv >= INT_MIN && first_argv <= INT_MAX)
 	{
 		ft_putstr_fd("bash: exit: too many arguments\n", STDERR_FILENO);
-		g_env_list.exit_status = 1;
+		g_st.exit_status = 1;
 		return ;
 	}
 	else if (cnt != 1)
@@ -39,9 +39,9 @@ void	ft_exit(t_cmd_node *head)
 		ft_putstr_fd("bash: exit: ", STDERR_FILENO);
 		ft_putstr_fd(head->next->cmd, STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
-		g_env_list.exit_status = 255;
+		g_st.exit_status = 255;
 	}
-	exit(g_env_list.exit_status);
+	exit(g_st.exit_status);
 }
 
 void	ft_exit_single_cmd(t_cmd_node *head)
@@ -54,11 +54,11 @@ void	ft_exit_single_cmd(t_cmd_node *head)
 		first_argv = ft_atoll(head->next->cmd);
 	printf("exit\n");
 	if (cnt == 2 && first_argv >= INT_MIN && first_argv <= INT_MAX)
-		g_env_list.exit_status = get_exit_code(head);
+		g_st.exit_status = get_exit_code(head);
 	else if (cnt > 2 && first_argv >= INT_MIN && first_argv <= INT_MAX)
 	{
 		ft_putstr_fd("bash: exit: too many arguments\n", STDERR_FILENO);
-		g_env_list.exit_status = 1;
+		g_st.exit_status = 1;
 		return ;
 	}
 	else if (cnt != 1)
@@ -66,9 +66,9 @@ void	ft_exit_single_cmd(t_cmd_node *head)
 		ft_putstr_fd("bash: exit: ", STDERR_FILENO);
 		ft_putstr_fd(head->next->cmd, STDERR_FILENO);
 		ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
-		g_env_list.exit_status = 255;
+		g_st.exit_status = 255;
 	}
-	exit(g_env_list.exit_status);
+	exit(g_st.exit_status);
 }
 
 int	get_cnt(t_cmd_node *curr)

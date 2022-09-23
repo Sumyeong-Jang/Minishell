@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:06:28 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 03:35:25 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	sigint_handler(int sig)
 			rl_replace_line("", 0);
 			rl_on_new_line();
 			rl_redisplay();
-			g_env_list.exit_status = 1;
+			g_st.exit_status = 1;
 		}
 		else
 		{
-			g_env_list.exit_status = 130;
+			g_st.exit_status = 130;
 			ft_putendl_fd("", STDOUT_FILENO);
 		}
 	}
@@ -62,7 +62,7 @@ void	sigquit_handler(int sig)
 		}
 		else
 		{
-			g_env_list.exit_status = 131;
+			g_st.exit_status = 131;
 			ft_putstr_fd("Quit: ", STDOUT_FILENO);
 			ft_putnbr_fd(sig, STDOUT_FILENO);
 			ft_putendl_fd("", STDOUT_FILENO);

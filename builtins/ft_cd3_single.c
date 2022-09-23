@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd3_single.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:15:23 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:15:25 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	change_dir_single(char *str)
 	{
 		free(tmp);
 		printf("cd: no such file or directory: %s\n", str);
-		g_env_list.exit_status = 1;
+		g_st.exit_status = 1;
 	}
 	else
 	{

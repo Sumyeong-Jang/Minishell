@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 17:17:19 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 18:02:25 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,17 @@ int	need_join(t_token_node *curr_token, char *line, int option)
 
 int	parse_error(int option)
 {
-	g_env_list.exit_status = 1;
+	g_st.exit_status = 1;
 	if (option == 1)
 	{
-		g_env_list.exit_status = 258;
+		g_st.exit_status = 258;
 		printf("ERROR : ’(\") must be paired\n");
 	}
 	else if (option == 2)
 		printf("ERROR : Memory allocation failed\n");
 	else if (option == 3)
 	{
-		g_env_list.exit_status = 258;
+		g_st.exit_status = 258;
 		printf("syntax error near unexpected token\n");
 	}
 	else if (option == 4)

@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 17:22:41 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 17:23:04 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	heredoc_parent(pid_t pid)
 	{
 		if (WTERMSIG(status) == SIGINT)
 		{
-			g_env_list.exit_status = 1;
+			g_st.exit_status = 1;
 			remove_temp_file();
 			return (0);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd2_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:15:17 by sumjang           #+#    #+#             */
-/*   Updated: 2022/09/23 14:15:18 by sumjang          ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	export_str(char *str)
 	if (is_in_envp(str) != -1)
 		modify_envp(str, is_in_envp(str));
 	else
-		g_env_list.env_list = new_export(str);
+		g_st.env_list = new_export(str);
 }
 
 void	old_dir(void)

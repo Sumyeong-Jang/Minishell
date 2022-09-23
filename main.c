@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:46:30 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 17:14:14 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 22:23:15 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	print_intro(void)
 
 static void	main_init(char **envp)
 {
-	g_env_list.env_list = copy_envs(envp);
+	g_st.env_list = copy_envs(envp);
 	if (is_in_env_list("OLDPWD") == -1)
 		edit_env_list(ft_strjoin(ft_strdup("OLDPWD="), get_pwd()));
 	print_intro();
@@ -67,6 +67,6 @@ int	main(int argc, char **argv, char **envp)
 		free_cmd(cmd_list);
 		remove_temp_file();
 	}
-	free_split(g_env_list.env_list);
+	free_split(g_st.env_list);
 	return (0);
 }
