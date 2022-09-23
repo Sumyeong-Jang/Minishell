@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:45:12 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 14:46:13 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 16:56:26 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,6 @@ static int	write_dollar_heredoc(char *line, int start, int len, int fd)
 	free(name);
 	free(value);
 	return (TRUE);
-}
-
-void	finish_heredoc(char **line, int fd, int end_status)
-{
-	if (*line != NULL)
-		free(*line);
-	if (fd >= 0)
-		close(fd);
-	exit(end_status);
 }
 
 int	write_heredoc(int fd, char *line)

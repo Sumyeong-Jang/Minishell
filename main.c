@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:46:30 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 12:21:44 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 16:53:53 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,21 @@ static void	print_intro(void)
 	close(fd);
 }
 
-int	main(int argc, char **argv, char **envp)
+static void	main_init(char **envp)
 {
-	t_cmd_list	*cmd_list;
-	char		*line;
-
 	g_env_list.env_list = copy_envs(envp);
 	if (is_in_env_list("OLDPWD") == -1)
 		edit_env_list(ft_strjoin(ft_strdup("OLDPWD="), get_pwd()));
 	print_intro();
 	set_main_signal();
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_cmd_list	*cmd_list;
+	char		*line;
+
+	main_init(envp);
 	while (1)
 	{
 		echoctl_off();
