@@ -12,16 +12,16 @@
 
 #include "../includes/minishell.h"
 
-int	is_right_form(char *str);
+int	is_valid_form(char *str);
 
-int	is_right_form(char *str)
+int	is_valid_form(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (ft_isalpha(str[0]) == FALSE && str[0] != '_')
 		return (FALSE);
-	if (has_equal_sign(str) == TRUE)
+	if (have_equal(str) == TRUE)
 	{
 		while (str[i] != '=')
 		{

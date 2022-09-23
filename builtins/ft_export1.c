@@ -14,8 +14,8 @@
 
 void	ft_export(t_cmd_node *head);
 void	ft_export_single_cmd(t_cmd_node *head);
-void	export_wihtout_arg(t_cmd_node *head);
-int		is_right_form(char *str);
+void	export_no_arg(t_cmd_node *head);
+int		is_valid_form(char *str);
 
 void	ft_export(t_cmd_node *head)
 {
@@ -24,10 +24,10 @@ void	ft_export(t_cmd_node *head)
 
 	curr_node = head->next;
 	exit_code = FALSE;
-	export_wihtout_arg(head);
+	export_no_arg(head);
 	while (curr_node != NULL)
 	{
-		if (is_right_form(curr_node->cmd) == FALSE)
+		if (is_valid_form(curr_node->cmd) == FALSE)
 		{
 			exit_code = TRUE;
 			ft_putstr_fd("bash : export : ", STDERR_FILENO);
@@ -37,7 +37,7 @@ void	ft_export(t_cmd_node *head)
 		curr_node = curr_node->next;
 	}
 	if (exit_code == TRUE)
-		exit(1);
+		exit(exit_code);
 }
 
 void	ft_export_single_cmd(t_cmd_node *head)
@@ -46,17 +46,17 @@ void	ft_export_single_cmd(t_cmd_node *head)
 	t_cmd_node	*curr_node;
 
 	curr_node = head->next;
-	export_wihtout_arg(head);
+	export_no_arg(head);
 	while (curr_node != NULL)
 	{
-		if (is_right_form(curr_node->cmd) == FALSE)
+		if (is_valid_form(curr_node->cmd) == FALSE)
 		{
 			ft_putstr_fd("bash : export : ", STDERR_FILENO);
 			ft_putstr_fd(curr_node->cmd, STDERR_FILENO);
 			ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
 			g_env_list.exit_status = 1;
 		}
-		else if ((has_equal_sign(curr_node->cmd) == TRUE))
+		else if ((have_equal(curr_node->cmd) == TRUE))
 		{
 			idx = is_in_envp(curr_node->cmd);
 			if (idx != -1)
@@ -68,7 +68,7 @@ void	ft_export_single_cmd(t_cmd_node *head)
 	}
 }
 
-void	export_wihtout_arg(t_cmd_node *head)
+void	export_no_arg(t_cmd_node *head)
 {
 	int	i;
 

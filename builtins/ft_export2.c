@@ -12,12 +12,12 @@
 
 #include "../includes/minishell.h"
 
-int		has_equal_sign(char *str);
+int		have_equal(char *str);
 int		is_in_envp(char *str);
 void	modify_envp(char *str, int loc);
 char	**new_export(char *str);
 
-int	has_equal_sign(char *str)
+int	have_equal(char *str)
 {
 	int	i;
 
