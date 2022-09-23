@@ -22,7 +22,7 @@ REDIR_DIR = ./redirection/
 
 PARSE_SRCS = cmd.c heredoc.c heredoc_utils.c parse.c token.c
 BUILTIN_SRCS = ft_pwd.c ft_env.c ft_echo.c ft_export1.c ft_export2.c ft_unset.c ft_unset2_single.c ft_cd.c ft_cd2_utils.c ft_cd3_single.c ft_exit.c ft_utils.c
-UTIL_SRCS = add_no_utils_func.c env_utils.c free.c ft_strcmp.c get_pwd.c signal.c
+UTIL_SRCS = add_no_utils_func.c env_utils.c free.c ft_utils.c get_pwd.c signal.c
 EXEC_SRCS = exec_builtins.c do_cmd_with_pipe_utils.c do_cmd_with_pipe.c do_cmd_without_pipe_utils.c do_cmd_without_pipe.c
 REDIR_SRCS = redir_in.c remove_without_redir.c redir_out.c
 
