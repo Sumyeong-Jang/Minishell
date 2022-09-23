@@ -12,15 +12,15 @@
 
 #include "../includes/minishell.h"
 
-char *get_pwd(void)
+char	*get_pwd(void)
 {
-    char *current_dir;
+	char	*current_dir;
 
-    current_dir = getcwd(NULL, 0);
-    if (current_dir == NULL)
-    {
-        ft_putendl_fd(strerror(errno), STDERR_FILENO);
-        exit(1);
-    }
-    return (current_dir);
+	current_dir = getcwd(NULL, 0);
+	if (current_dir == NULL)
+	{
+		ft_putendl_fd(strerror(errno), STDERR_FILENO);
+		exit(1);
+	}
+	return (current_dir);
 }

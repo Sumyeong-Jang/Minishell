@@ -6,18 +6,18 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:10:18 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/21 04:35:57 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 14:43:59 by sumjang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void ft_free(char **s);
-void free_array(int **tmp, int idx);
+void	ft_free(char **s);
+void	free_array(int **tmp, int idx);
 
-void ft_free(char **s)
+void	ft_free(char **s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -30,9 +30,9 @@ void ft_free(char **s)
 	s = NULL;
 }
 
-void free_array(int **tmp, int idx)
+void	free_array(int **tmp, int idx)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < idx)
@@ -45,17 +45,17 @@ void free_array(int **tmp, int idx)
 	tmp = NULL;
 }
 
-void free_cmd(t_cmd_list *cmd_list)
+void	free_cmd(t_cmd_list *cmd_list)
 {
-	t_cmd_node *curr;
-	t_cmd_node *temp;
-	int i;
+	t_cmd_node	*curr;
+	t_cmd_node	*temp;
+	int			i;
 
 	i = 0;
 	while (i < cmd_list->size)
 	{
 		if (cmd_list->cmd_head == NULL)
-			break;
+			break ;
 		curr = cmd_list->cmd_head[i];
 		while (curr != NULL)
 		{
@@ -72,10 +72,10 @@ void free_cmd(t_cmd_list *cmd_list)
 	cmd_list = 0;
 }
 
-void free_split(char **tmp)
+void	free_split(char **tmp)
 {
-	int i;
-	int cnt;
+	int	i;
+	int	cnt;
 
 	i = -1;
 	cnt = 0;
@@ -88,9 +88,9 @@ void free_split(char **tmp)
 	tmp = NULL;
 }
 
-void free_split_part(char **tmp, int idx)
+void	free_split_part(char **tmp, int idx)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < idx)
