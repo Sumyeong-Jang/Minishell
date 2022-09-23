@@ -25,7 +25,7 @@ int	heredoc_parent(pid_t pid)
 {
 	int	status;
 
-	saitpid(pid, &status, 0);
+	waitpid(pid, &status, 0);
 	set_main_signal();
 	if (WIFSIGNALED(status))
 	{
