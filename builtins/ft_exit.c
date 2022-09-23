@@ -12,11 +12,11 @@
 
 #include "../includes/minishell.h"
 
-void	ft_exit(t_cmd_node *head);
-void	ft_exit_single_cmd(t_cmd_node *head);
-int	get_cnt(t_cmd_node *curr);
+void		ft_exit(t_cmd_node *head);
+void		ft_exit_single_cmd(t_cmd_node *head);
+int			get_cnt(t_cmd_node *curr);
 long long	ft_atoll(char *str);
-int	get_exit_code(t_cmd_node *curr_node);
+int			get_exit_code(t_cmd_node *curr_node);
 
 void	ft_exit(t_cmd_node *head)
 {

@@ -92,9 +92,7 @@ struct s_cmd_list
 	t_cmd_node	**cmd_head;
 };
 
-/*
- *** parse ***
- */
+/**** parse ****/
 int					parse_error(int option);
 int					parse_cmd(char *line, t_cmd_list **cmd_line_list);
 int					make_token_list(t_token_node **token_head, char *line);
@@ -131,9 +129,7 @@ int					new_dquote(t_cmd_node **cmd_head,
 						t_token_node **curr, char *line);
 int					write_heredoc(int fd, char *line);
 
-/*
- *** utils ***
- */
+/**** utils ****/
 char				**copy_envs(char **envp);
 void				free_split(char **tmp);
 void				free_split_part(char **tmp, int idx);
@@ -149,9 +145,7 @@ char				*char_to_string(char c);
 int					is_white_space(char c);
 void				ft_free(char **s);
 
-/*
- *** redirection ***
- */
+/**** redirection ****/
 int					mini_heredoc(t_cmd_node **curr_cmd);
 void				redir_in(t_cmd_node *node);
 char				*have_redir_in(t_cmd_node *node);
@@ -164,9 +158,7 @@ int					heredoc_child(char *delimiter);
 void				make_new_dollar_string(int *idx,
 						t_token_node **curr, char **new_str);
 
-/*
- *** execute commands ***
- */
+/**** executor ****/
 void				exec_builtins(t_cmd_node *node);
 void				exec_single_builtins(t_cmd_node *node);
 char				*is_valid_cmd(t_cmd_node *node);
@@ -182,9 +174,7 @@ void				execve_error(char *strerror, t_cmd_node *cmd_list);
 void				free_variables(int size,
 						int ***fd, pid_t **pid, int **status);
 
-/*
-    built-in
-*/
+/**** builtins ****/
 char				*get_value(char *key);
 void				edit_env_list(char *str);
 char				*get_pwd(void);

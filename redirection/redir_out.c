@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redir_out.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:27:56 by sumjang           #+#    #+#             */
+/*   Updated: 2022/09/23 14:27:56 by sumjang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-void redir_out(t_cmd_node *node);
-t_cmd_node *have_redir_out(t_cmd_node *node);
-static void do_redir_out(char *cmd);
-static void do_redir_append(char *cmd);
+void		redir_out(t_cmd_node *node);
+t_cmd_node	*have_redir_out(t_cmd_node *node);
+void		do_redir_out(char *cmd);
+void		do_redir_append(char *cmd);
 
-void redir_out(t_cmd_node *node)
+void	redir_out(t_cmd_node *node)
 {
-	t_cmd_node *outfile;
-	int out_fd;
+	t_cmd_node	*outfile;
+	int			out_fd;
 
 	outfile = have_redir_out(node);
 	if (outfile != NULL)
@@ -27,10 +39,10 @@ void redir_out(t_cmd_node *node)
 	}
 }
 
-t_cmd_node *have_redir_out(t_cmd_node *node)
+t_cmd_node	*have_redir_out(t_cmd_node *node)
 {
-	t_cmd_node *curr;
-	t_cmd_node *last_redirout;
+	t_cmd_node	*curr;
+	t_cmd_node	*last_redirout;
 
 	curr = node;
 	last_redirout = NULL;
@@ -51,10 +63,10 @@ t_cmd_node *have_redir_out(t_cmd_node *node)
 	return (last_redirout);
 }
 
-static void do_redir_out(char *cmd)
+void	do_redir_out(char *cmd)
 {
-	int fd;
-	struct stat s;
+	int			fd;
+	struct stat	s;
 
 	if (stat(cmd, &s) == 0)
 	{
@@ -72,10 +84,10 @@ static void do_redir_out(char *cmd)
 	}
 }
 
-static void do_redir_append(char *cmd)
+void	do_redir_append(char *cmd)
 {
-	int fd;
-	struct stat s;
+	int		fd;
+	struct stat	s;
 
 	if (stat(cmd, &s) != 0)
 	{

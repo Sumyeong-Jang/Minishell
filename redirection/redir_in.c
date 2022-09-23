@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redir_in.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:27:50 by sumjang           #+#    #+#             */
+/*   Updated: 2022/09/23 14:27:51 by sumjang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-void		redir_in(t_cmd_node *node);
-char		*have_redir_in(t_cmd_node *node);
-static int	get_redir_in(t_cmd_node *node);
-static void	do_redir(char *cmd, int flag);
+void	redir_in(t_cmd_node *node);
+char	*have_redir_in(t_cmd_node *node);
+int		get_redir_in(t_cmd_node *node);
+void	do_redir(char *cmd, int flag);
 
-void redir_in(t_cmd_node *node)
+void	redir_in(t_cmd_node *node)
 {
-	char *infile;
-	int in_fd;
+	char	*infile;
+	int		in_fd;
 
 	infile = have_redir_in(node);
 	if (infile != NULL)
@@ -27,12 +39,12 @@ void redir_in(t_cmd_node *node)
 	}
 }
 
-char *have_redir_in(t_cmd_node *node)
+char	*have_redir_in(t_cmd_node *node)
 {
-	t_cmd_node *last_redirin;
-	int flag;
-	struct stat file_info; //......?
-	int cnt;
+	t_cmd_node	*last_redirin;
+	int			flag;
+	struct stat	file_info; //......?
+	int			cnt;
 
 	flag = FALSE;
 	cnt = get_redir_in(node);
@@ -50,10 +62,10 @@ char *have_redir_in(t_cmd_node *node)
 	return (last_redirin->next->cmd);
 }
 
-static int get_redir_in(t_cmd_node *node)
+int	get_redir_in(t_cmd_node *node)
 {
-	t_cmd_node *curr;
-	int cnt;
+	t_cmd_node	*curr;
+	int			cnt;
 
 	cnt = 0;
 	curr = node;
@@ -66,16 +78,16 @@ static int get_redir_in(t_cmd_node *node)
 	return (cnt);
 }
 
-static void do_redir(char *cmd, int flag)
+void	do_redir(char *cmd, int flag)
 {
-	struct stat file_info;
+	struct stat	file_info;
 
 	if ((stat(cmd, &file_info) == -1) && (flag == FALSE))
 	{
 		flag = TRUE;
-		ft_putstr_fd("bash: ", STDERR_FILENO); //출력 minishell
+		ft_putstr_fd("bash: ", STDERR_FILENO);
 		ft_putstr_fd(cmd, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO); //출력 확인
+		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		exit(1);
 	}
 }

@@ -12,17 +12,17 @@
 
 #include "../includes/minishell.h"
 
-void ft_cd(t_cmd_node *head);
-char *get_value(char *key);
-int key_len(char *str);
-int value_len(char *str);
-void home_dir(char *str);
+void	ft_cd(t_cmd_node *head);
+char	*get_value(char *key);
+int		key_len(char *str);
+int		value_len(char *str);
+void	home_dir(char *str);
 
-void ft_cd(t_cmd_node *head)
+void	ft_cd(t_cmd_node *head)
 {
-	t_cmd_node *curr_node;
-	int ret;
-	char *str;
+	t_cmd_node	*curr_node;
+	int			ret;
+	char		*str;
 
 	curr_node = head->next;
 	ret = 0;
@@ -43,22 +43,24 @@ void ft_cd(t_cmd_node *head)
 	}
 }
 
-char *get_value(char *key)
+char	*get_value(char *key)
 {
-	int i;
-	char *ret;
+	int		i;
+	char	*ret;
 
 	i = -1;
 	ret = NULL;
 	while (g_env_list.env_list[++i])
 	{
-		if ((ft_strncmp(key, g_env_list.env_list[i], ft_strlen(key)) == 0) && g_env_list.env_list[i][ft_strlen(key)] == '=')
-			ret = ft_substr(g_env_list.env_list[i], key_len(g_env_list.env_list[i]) + 1, value_len(g_env_list.env_list[i]));
+		if ((ft_strncmp(key, g_env_list.env_list[i], ft_strlen(key)) == 0)\
+		 && g_env_list.env_list[i][ft_strlen(key)] == '=')
+			ret = ft_substr(g_env_list.env_list[i], key_len\
+			(g_env_list.env_list[i]) + 1, value_len(g_env_list.env_list[i]));
 	}
 	return (ret);
 }
 
-int key_len(char *str)
+int	key_len(char *str)
 {
 	int ret;
 	int i;

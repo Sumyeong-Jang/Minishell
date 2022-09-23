@@ -13,7 +13,7 @@
 #include "../includes/minishell.h"
 
 void		ft_echo(t_cmd_node *head);
-static void	print_echo(t_cmd_node *curr, int is_option);
+void	print_echo(t_cmd_node *curr, int is_option);
 
 void	ft_echo(t_cmd_node *head)
 {
@@ -40,7 +40,7 @@ void	ft_echo(t_cmd_node *head)
 	print_echo(curr_node, is_option);
 }
 
-static void	print_echo(t_cmd_node *curr, int is_option)
+void	print_echo(t_cmd_node *curr, int is_option)
 {
 	t_cmd_node	*curr_node;
 
