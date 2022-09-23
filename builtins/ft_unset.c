@@ -33,7 +33,7 @@ int	ft_unset_2(t_cmd_node *head, int flag)
 	curr_node = head->next;
 	while (curr_node != NULL)
 	{
-		if (is_right_form(curr_node->cmd) == FALSE)
+		if (is_valid_form(curr_node->cmd) == FALSE)
 			flag = unset_error(curr_node->cmd);
 		curr_node = curr_node->next;
 	}

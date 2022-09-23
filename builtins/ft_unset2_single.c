@@ -30,18 +30,17 @@ void	ft_unset_single_cmd(t_cmd_node *head)
 			loc = is_str_in_envp(curr_node->cmd);
 			if (loc != FALSE)
 			{
-				while (loc < envp_cnt() - 1)
+				while (loc++ < envp_cnt() - 1)
 				{
 					free(g_env_list.env_list[loc]);
 					g_env_list.env_list[loc] = \
 					ft_strdup(g_env_list.env_list[loc + 1]);
-					loc++;
 				}
 				free(g_env_list.env_list[envp_cnt() - 1]);
 				g_env_list.env_list[envp_cnt() - 1] = NULL;
 			}
 		}
-		else if (is_right_form(curr_node->cmd) == FALSE)
+		else if (is_valid_form(curr_node->cmd) == FALSE)
 			unset_error_single(curr_node->cmd);
 		curr_node = curr_node->next;
 	}

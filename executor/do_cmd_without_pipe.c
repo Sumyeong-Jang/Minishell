@@ -36,7 +36,7 @@ void	exec_without_pipe(t_cmd_node *node)
 	{
 		pid = fork();
 		if (pid <= -1)
-			exit(1); // exit_code 확인
+			exit(1);
 		if (pid == 0)
 		{
 			do_cmd_without_pipe(node);
@@ -46,7 +46,7 @@ void	exec_without_pipe(t_cmd_node *node)
 		{
 			waitpid(pid, &status, 0);
 			if (!WIFSIGNALED(status))
-				g_env_list.exit_status = status / 256; //?
+				g_env_list.exit_status = status / 256;
 		}
 	}
 }

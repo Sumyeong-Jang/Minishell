@@ -52,18 +52,18 @@ char	*get_value(char *key)
 	ret = NULL;
 	while (g_env_list.env_list[++i])
 	{
-		if ((ft_strncmp(key, g_env_list.env_list[i], ft_strlen(key)) == 0)\
-		 && g_env_list.env_list[i][ft_strlen(key)] == '=')
-			ret = ft_substr(g_env_list.env_list[i], key_len\
-			(g_env_list.env_list[i]) + 1, value_len(g_env_list.env_list[i]));
+		if ((ft_strncmp(key, g_env_list.env_list[i], ft_strlen(key)) == 0) \
+		&& g_env_list.env_list[i][ft_strlen(key)] == '=')
+			ret = ft_substr(g_env_list.env_list[i], key_len(g_env_list.\
+			env_list[i]) + 1, value_len(g_env_list.env_list[i]));
 	}
 	return (ret);
 }
 
 int	key_len(char *str)
 {
-	int ret;
-	int i;
+	int	ret;
+	int	i;
 
 	ret = -1;
 	i = -1;
@@ -76,10 +76,10 @@ int	key_len(char *str)
 	return (ret);
 }
 
-int value_len(char *str)
+int	value_len(char *str)
 {
-	int ret;
-	int i;
+	int	ret;
+	int	i;
 
 	ret = -1;
 	i = -1;
@@ -87,9 +87,9 @@ int value_len(char *str)
 	return (ret);
 }
 
-void home_dir(char *str)
+void	home_dir(char *str)
 {
-	char *tmp1;
+	char	*tmp1;
 
 	tmp1 = ft_strdup("PWD=");
 	if (chdir(str) < 0)
