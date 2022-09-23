@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 17:12:28 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 17:52:24 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void				join_dquote(t_cmd_node **cmd_head,
 int					new_dquote(t_cmd_node **cmd_head,
 						t_token_node **curr, char *line);
 int					write_heredoc(int fd, char *line);
+void				cmd_check(t_cmd_list *cmd_line_list, t_token_node *token_head);
 
 /**** utils ****/
 char				**copy_envs(char **envp);
@@ -146,6 +147,7 @@ int					is_white_space(char c);
 void				ft_free(char **s);
 void				echoctl_off(void);
 void				echoctl_on(void);
+int					is_not_common(enum e_cmd_type type);
 
 /**** redirection ****/
 int					mini_heredoc(t_cmd_node **curr_cmd);
