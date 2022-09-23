@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:15:46 by sumjang           #+#    #+#             */
+/*   Updated: 2022/09/23 14:15:47 by sumjang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-void ft_export(t_cmd_node *head);
-void ft_export_single_cmd(t_cmd_node *head);
-void export_wihtout_arg(t_cmd_node *head);
-int is_right_form(char *str);
+void	ft_export(t_cmd_node *head);
+void	ft_export_single_cmd(t_cmd_node *head);
+void	export_wihtout_arg(t_cmd_node *head);
+int		is_right_form(char *str);
 
-void ft_export(t_cmd_node *head)
+void	ft_export(t_cmd_node *head)
 {
-	int flag;
-	t_cmd_node *curr_node;
+	int			flag;
+	t_cmd_node	*curr_node;
 
 	curr_node = head->next;
 	flag = FALSE;
@@ -28,10 +40,10 @@ void ft_export(t_cmd_node *head)
 		exit(1);
 }
 
-void ft_export_single_cmd(t_cmd_node *head)
+void	ft_export_single_cmd(t_cmd_node *head)
 {
-	int idx;
-	t_cmd_node *curr_node;
+	int			idx;
+	t_cmd_node	*curr_node;
 
 	curr_node = head->next;
 	export_wihtout_arg(head);
@@ -56,9 +68,9 @@ void ft_export_single_cmd(t_cmd_node *head)
 	}
 }
 
-void export_wihtout_arg(t_cmd_node *head)
+void	export_wihtout_arg(t_cmd_node *head)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (head->next == NULL)

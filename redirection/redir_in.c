@@ -1,9 +1,9 @@
 #include "../includes/minishell.h"
 
-void redir_in(t_cmd_node *node);
-char *have_redir_in(t_cmd_node *node);
-static int get_redir_in(t_cmd_node *node);
-static void do_redir(char *cmd, int flag);
+void		redir_in(t_cmd_node *node);
+char		*have_redir_in(t_cmd_node *node);
+static int	get_redir_in(t_cmd_node *node);
+static void	do_redir(char *cmd, int flag);
 
 void redir_in(t_cmd_node *node)
 {
