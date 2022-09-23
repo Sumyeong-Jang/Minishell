@@ -21,11 +21,28 @@ int	is_not_common(enum e_cmd_type type)
 		return (0);
 }
 
+int	heredoc_parent(pid_t pid)
+{
+	int	status;
+
+	saitpid(pid, &status, 0);
+	set_main_signal();
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+		{
+			g_env_list.exit_status = 1;
+			remove_temp_file();
+			return (0);
+		}
+	}
+	return (1);
+}
+
 int	mini_heredoc(t_cmd_node **curr_cmd)
 {
 	pid_t	pid;
 	int		status;
-	int		ret;
 
 	signal(SIGQUIT, SIG_IGN);
 	pid = fork();
@@ -35,18 +52,8 @@ int	mini_heredoc(t_cmd_node **curr_cmd)
 		heredoc_child((*curr_cmd)->cmd);
 	else
 	{
-		waitpid(pid, &status, 0);
-		set_main_signal();
-		if (WIFSIGNALED(status))
-		{
-			ret = WTERMSIG(status);
-			if (ret == SIGINT)
-			{
-				g_env_list.exit_status = 1;
-				remove_temp_file();
-				return (0);
-			}
-		}
+		if (heredoc_parent(pid) == 0)
+			return (0);
 		(*curr_cmd)->prev->type = REDIRIN;
 		free((*curr_cmd)->cmd);
 		(*curr_cmd)->cmd = ft_strdup("sjo.sumjang");

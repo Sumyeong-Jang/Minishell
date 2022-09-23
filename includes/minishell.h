@@ -128,6 +128,7 @@ void				join_dquote(t_cmd_node **cmd_head,
 int					new_dquote(t_cmd_node **cmd_head,
 						t_token_node **curr, char *line);
 int					write_heredoc(int fd, char *line);
+int					heredoc_parent(pid_t pid);
 
 /**** utils ****/
 char				**copy_envs(char **envp);
