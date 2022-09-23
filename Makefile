@@ -21,10 +21,10 @@ all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 			@make -C $(LIBFT_DIR) all
-			@$(CC) $(CFLAGS) -L$(LIBFT_DIR) -lft -lreadline -L/Users/sumjang/.brew/opt/readline/lib -o $@ $(OBJS)
+			@$(CC) $(CFLAGS) -L$(LIBFT_DIR) -lft -lreadline -L/goinfre/sjo/.brew/opt/readline/lib -o $@ $(OBJS)
 
 %.o	:	%.c
-		@$(CC) $(CFLAG) -I/Users/sumjang/.brew/opt/readline/include -c $< -o $@
+		@$(CC) $(CFLAG) -I/goinfre/sjo/.brew/opt/readline/include -c $< -o $@
 
 clean	:
 			@rm -rf $(OBJS)

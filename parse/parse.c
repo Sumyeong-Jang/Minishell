@@ -12,7 +12,6 @@
 
 #include "../includes/minishell.h"
 
-// 왜 static인가,,,, => 이 파일 안에서만 사용하는 함수임을 명시
 static int is_empty_line(char *line)
 {
     int i;
@@ -196,14 +195,11 @@ int parse_cmd(char *line, t_cmd_list **cmd_line_list)
     t_token_node *token_head;
 
     token_head = NULL;
-    // ft_memset(*cmd_line_list, 0, sizeof(t_cmd_list));
-    // read_cmd_line(&line);
     if (is_empty_line(line) == 1)
     {
         free_token_line(token_head, line);
         return (0);
     }
-    // add_history(line);
     if (make_token_list(&token_head, line) == 0)
     {
         free_token_line(token_head, line);

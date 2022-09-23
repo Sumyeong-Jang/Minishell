@@ -383,5 +383,7 @@ int make_cmd_list(t_cmd_list **cmd_line_list,
     }
     if (check_cmd((*cmd_line_list)->cmd_head, (*cmd_line_list)->size) == 0)
         return (0);
+
+
     return (1);
 }
