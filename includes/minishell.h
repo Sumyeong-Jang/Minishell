@@ -6,7 +6,7 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:47:07 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 13:03:32 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 17:12:28 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ void				sig_heredoc_handler(int sig);
 char				*char_to_string(char c);
 int					is_white_space(char c);
 void				ft_free(char **s);
+void				echoctl_off(void);
+void				echoctl_on(void);
 
 /**** redirection ****/
 int					mini_heredoc(t_cmd_node **curr_cmd);
