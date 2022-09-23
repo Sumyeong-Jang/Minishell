@@ -19,24 +19,24 @@ int		is_right_form(char *str);
 
 void	ft_export(t_cmd_node *head)
 {
-	int			flag;
+	int			exit_code;
 	t_cmd_node	*curr_node;
 
 	curr_node = head->next;
-	flag = FALSE;
+	exit_code = FALSE;
 	export_wihtout_arg(head);
 	while (curr_node != NULL)
 	{
 		if (is_right_form(curr_node->cmd) == FALSE)
 		{
-			flag = TRUE;
+			exit_code = TRUE;
 			ft_putstr_fd("bash : export : ", STDERR_FILENO);
 			ft_putstr_fd(curr_node->cmd, STDERR_FILENO);
 			ft_putstr_fd(": not a valid identifier\n", STDERR_FILENO);
 		}
 		curr_node = curr_node->next;
 	}
-	if (flag == TRUE)
+	if (exit_code == TRUE)
 		exit(1);
 }
 

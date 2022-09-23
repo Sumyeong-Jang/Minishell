@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void		ft_echo(t_cmd_node *head);
+void	ft_echo(t_cmd_node *head);
 void	print_echo(t_cmd_node *curr, int is_option);
 
 void	ft_echo(t_cmd_node *head)
