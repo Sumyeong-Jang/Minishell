@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sumjang <sumjang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 14:15:30 by sumjang           #+#    #+#             */
+/*   Updated: 2022/09/23 14:15:31 by sumjang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
-void	ft_echo(t_cmd_node *head);
-static void	print_echo(t_cmd_node *curr, int flag);
+void		ft_echo(t_cmd_node *head);
+static void	print_echo(t_cmd_node *curr, int is_option);
 
 void	ft_echo(t_cmd_node *head)
 {
 	t_cmd_node	*curr_node;
-	int			flag;
+	int			is_option;
 
 	curr_node = head->next;
 	if (curr_node == NULL)
@@ -17,18 +29,18 @@ void	ft_echo(t_cmd_node *head)
 	}
 	if (curr_node->type == OPTION)
 	{
-		flag = TRUE;
+		is_option = TRUE;
 		curr_node = curr_node->next;
 	}
 	else
-		flag = FALSE;
+		is_option = FALSE;
 	g_env_list.exit_status = 0;
 	if (curr_node == NULL)
 		return ;
-	print_echo(curr_node, flag);
+	print_echo(curr_node, is_option);
 }
 
-static void	print_echo(t_cmd_node *curr, int flag)
+static void	print_echo(t_cmd_node *curr, int is_option)
 {
 	t_cmd_node	*curr_node;
 
@@ -39,6 +51,6 @@ static void	print_echo(t_cmd_node *curr, int flag)
 		curr_node = curr_node->next;
 	}
 	printf("%s", curr_node->cmd);
-	if (flag == FALSE)
+	if (is_option == FALSE)
 		printf("\n");
 }
