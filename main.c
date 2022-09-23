@@ -6,29 +6,11 @@
 /*   By: sjo <sjo@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:46:30 by sjo               #+#    #+#             */
-/*   Updated: 2022/09/23 16:53:53 by sjo              ###   ########.fr       */
+/*   Updated: 2022/09/23 17:14:14 by sjo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/minishell.h"
-
-static void	echoctl_off(void)
-{
-	struct termios	attr;
-
-	tcgetattr(STDIN_FILENO, &attr);
-	attr.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &attr);
-}
-
-static void	echoctl_on(void)
-{
-	struct termios	attr;
-
-	tcgetattr(STDIN_FILENO, &attr);
-	attr.c_lflag |= ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &attr);
-}
 
 static void	print_intro(void)
 {
@@ -51,6 +33,15 @@ static void	main_init(char **envp)
 	set_main_signal();
 }
 
+static t_cmd_list	*cmd_init(void)
+{
+	t_cmd_list	*cmd_list;
+
+	cmd_list = (t_cmd_list *)malloc(sizeof(t_cmd_list));
+	ft_memset(cmd_list, 0, sizeof(t_cmd_list));
+	return (cmd_list);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_cmd_list	*cmd_list;
@@ -65,10 +56,7 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		if (*line != '\0')
 			add_history(line);
-		cmd_list = (t_cmd_list *)malloc(sizeof(t_cmd_list));
-		if (!cmd_list)
-			return (0);
-		ft_memset(cmd_list, 0, sizeof(t_cmd_list));
+		cmd_list = cmd_init();
 		if (parse_cmd(line, &cmd_list) == 0)
 		{
 			free_cmd(cmd_list);
